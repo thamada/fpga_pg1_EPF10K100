@@ -1,0 +1,38 @@
+(注意) H10_2_18とH10_2_23ではPin配置が以下の点で異なります。  
+
+32,34c32,34
+<  159      -     -    -    01      INPUT                0    0    0    4  hl_data29
+<  114      -     -    F    --      INPUT                0    0    0    3  hl_data30
+<  113      -     -    F    --      INPUT                0    0    0    2  hl_data31
+---
+>  159      -     -    -    01      INPUT                0    0    0    3  hl_data29
+>  114      -     -    F    --      INPUT                0    0    0    1  hl_data30
+>  113      -     -    F    --      INPUT                0    0    0    3  hl_data31
+52c52
+< Device-Specific Information:               e:\usr\hamada\maxplus\intf\intf.rpt
+---
+> Device-Specific Information:                       e:\usr\hamada\intf\intf.rpt
+88,99d87
+<  200      -     -    -    21     OUTPUT                0    1    0    0  pg_conf_cs
+<   97      -     -    -    05     OUTPUT                0    1    0    0  pg_conf_data0
+<   95      -     -    -    06     OUTPUT                0    1    0    0  pg_conf_data1
+<  197      -     -    -    19     OUTPUT                0    1    0    0  pg_conf_data2
+<  166      -     -    -    04     OUTPUT                0    1    0    0  pg_conf_data3
+<   63      -     -    -    19     OUTPUT                0    1    0    0  pg_conf_data4
+<  167      -     -    -    05     OUTPUT                0    1    0    0  pg_conf_data5
+<   62      -     -    -    19     OUTPUT                0    1    0    0  pg_conf_data6
+<  163      -     -    -    03     OUTPUT                0    1    0    0  pg_conf_data7
+<  100      -     -    -    04     OUTPUT                0    1    0    0  pg_conf_ncfig
+<   60      -     -    -    21     OUTPUT                0    1    0    0  pg_conf_ncs
+<  193      -     -    -    17     OUTPUT                0    1    0    0  pg_conf_ws
+
+
+(理由)
+H10_2_18 から H10_2_23 へ以下の点を変更したためコンパイルできなくなっ
+たから。
+
+H10_2_18 から H10_2_23 への変更点
+
+pg_conf_ncfigをCONF_START(piocom17=0)でLow、CONF_START(piocom17=1)で
+Highになるようにした。
+

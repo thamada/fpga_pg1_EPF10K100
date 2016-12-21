@@ -1,0 +1,526 @@
+TITLE "PROGRAPE Controller";
+%----------------------------------------------
+  intf.tdf
+
+  Controllers for PROGRAPE 
+  Copyright(c) 1997 by Toshiyuki Fukushige
+                       and Tsuyoshi Hamada
+  Last modified March 1, 1998.
+----------------------------------------------%
+CONSTANT DR_RAM_STATUS = 0;
+CONSTANT DR_REG_STATUS = 1;
+CONSTANT DR_NS_STATUS  = 2;
+CONSTANT DW_REG_STATUS = 3;
+CONSTANT CONF_START    = 4;
+CONSTANT CONF_BUSY     = 5;
+CONSTANT CONF_END      = 6;
+
+SUBDESIGN intf
+(
+    hl_clk   	: INPUT;
+    hl_d_read : OUTPUT;
+    hl_io_req : INPUT;
+    hl_data[31..0]: INPUT;
+    hl_dma_ack: INPUT;
+    pg_weram[3..0]:OUTPUT;
+    pg_wepf : OUTPUT;
+    pg_runpf: OUTPUT;
+    hl_calc_sts: OUTPUT;
+    pg_oepf: OUTPUT;
+    hl_d_write: OUTPUT;
+    hl_dma_w:OUTPUT;
+    pg_adrram[13..0] : OUTPUT;
+    pg_cspf[1..0] : OUTPUT;
+    pg_adrpf[9..0] : OUTPUT;
+    hl_dma_r : OUTPUT;		
+	pg_g : OUTPUT;
+
+	pg_conf_ncfig:OUTPUT;
+	pg_conf_cs: OUTPUT;
+	pg_conf_ncs: OUTPUT;
+	pg_conf_data[7..0]: OUTPUT;
+	pg_conf_ws: OUTPUT;
+)
+
+VARIABLE
+
+    gclk : NODE;
+
+    io_req[6..0]: DFF;
+    pio0 : NODE;
+    pio,piosts[2..0],piocom[20..0],piobn[10..0] : DFF;
+    data_com[20..0], data_bn[10..0],data_cs[1..0]: NODE; 
+    cs[1..0]: DFF;
+	reset[2..0]: DFF;
+
+    bncnt_drram[10..0], dmaack_drram, adr_drram[13..0] : DFF;
+    dmar_drram0, dmar_drram,iram[3..0]: DFF;
+    pg_weram[3..0]:DFF;
+
+    dmaack_drreg,dmar_drreg: DFF;
+    bncnt_drreg[10..0],adr_drreg[9..0]: DFF;
+
+    dmaack_drns,dmar_drns,nors,ce,ncnt[13..0],run:  DFF;
+    nread,cstart : NODE;
+    pg_runpf: DFF;
+
+    bncnt_dwreg[10..0],adr_dwreg[9..0]: DFF;
+    d_write[2..0]: DFF;
+    hl_d_write,hl_dma_w: DFF;
+	pg_g: DFF;
+    pg_gg: DFF;
+	pg_oepf: NODE;
+	img_dma_ack[5..0]: DFF;
+
+    conf_bsy: DFF;
+    cnt_conf[3..0]: DFF;
+	conf_ncfig: DFF;
+    conf_ws: DFF;
+    conf_data[7..0]: DFF;
+
+BEGIN
+
+    gclk = GLOBAL(hl_clk);
+
+    io_req[].clk = gclk; pio.clk = gclk; piosts[].clk = gclk;
+    cs[].clk = gclk; piocom[].clk=gclk; piobn[].clk = gclk; 
+	
+    dmaack_drram.clk = gclk; bncnt_drram[].clk = gclk;
+    adr_drram[].clk = gclk; dmar_drram.clk = gclk;
+    iram[].clk = gclk; dmar_drram0.clk = gclk;
+    pg_weram[].clk = gclk;
+	reset[].clk = gclk;
+ 
+    dmaack_drreg.clk = gclk; dmar_drreg.clk = gclk;
+    bncnt_drreg[].clk=gclk; adr_drreg[].clk = gclk;
+
+    dmaack_drns.clk = gclk;dmar_drns.clk = gclk;
+    nors.clk = gclk; ce.clk = gclk; ncnt[].clk = gclk;
+    run.clk = gclk; pg_runpf.clk = gclk;
+
+    bncnt_dwreg[].clk = gclk;adr_dwreg[].clk = gclk;
+    d_write[].clk = gclk; hl_d_write.clk = gclk;
+    hl_dma_w.clk = gclk;
+    pg_g.clk = gclk;
+    pg_gg.clk = gclk;
+	img_dma_ack[].clk = gclk;
+
+    conf_bsy.clk = gclk;
+    cnt_conf[].clk = gclk;
+	conf_ncfig.clk = gclk;
+    conf_ws.clk = gclk;
+    conf_data[].clk = gclk;
+
+%=======================================================
+	PIO
+=======================================================%
+
+    io_req[0].d = hl_io_req; 
+    io_req[6..1].d = io_req[5..0].q;
+
+    
+    pio0 = (io_req[5]==0)&(io_req[6]==1); 
+    pio.d = pio0;
+    hl_d_read = !((hl_io_req==0)&(io_req[1]==1));
+ 
+ %  TABLE     
+      pio0, data_com[20..18] => piosts[].d;
+      1,    B"00X" => DR_RAM_STATUS;	MA read ramD 
+      1,    B"010" => DR_REG_STATUS;         DMA read register 
+      1,    B"011" => DR_NS_STATUS;        DMA read N and start 
+      1,    B"100" => DW_REG_STATUS;        DMA write register
+	  1,    B"101" => CONF_START;
+      1,    B"110" => CONF_BUSY;
+      1,    B"111" => CONF_END;
+      0,    B"XXX" => piosts;  	   
+    END TABLE;
+%
+
+    IF pio0==1 THEN
+      IF data_com[20]==1 THEN
+	    IF data_com[19]==1 THEN
+	      IF data_com[18]==1 THEN 
+    	    piosts[].d = CONF_END;
+          ELSE
+		    piosts[].d = CONF_BUSY;
+          END IF;
+        ELSE
+		  IF data_com[18]==1 THEN
+		    piosts[].d = CONF_START;
+          ELSE
+		    piosts[].d = DW_REG_STATUS;
+          END IF;
+        END IF;
+      ELSE
+        IF data_com[19]==0 THEN
+          piosts[].d = DR_RAM_STATUS;
+        ELSE
+          IF data_com[18]==0 THEN
+            piosts[].d = DR_REG_STATUS;
+          ELSE
+            piosts[].d = DR_NS_STATUS;
+          END IF;
+        END IF;
+      END IF;
+    ELSE 
+      piosts[].d = piosts[].q;
+    END IF;
+
+    piocom[].d = data_com[];
+    piobn[].d = data_bn[];
+
+    TABLE 
+     data_com[13..10] => data_cs[];
+       B"0000"            => B"10";
+       B"0001"            => B"01";
+    END TABLE;
+
+    IF (pio0==1) THEN
+      cs[].d = data_cs[];
+    ELSE 
+      cs[].d = cs[].q;
+    END IF;
+
+%=======================================================
+	DR_RAM
+=======================================================%
+
+    dmaack_drram.d = hl_dma_ack;
+
+    data_com[20..0] = hl_data[31..11];
+    data_bn[10..0] = hl_data[10..0];
+%--------------------------------------%
+	reset[0].d = reset[0].q;
+    reset[1].d = !reset[0].q;
+	reset[2].d = reset[1].q;
+    dmar_drram.prn = reset[2].q;
+%---------------------------------------%
+    IF (pio==1) THEN 
+      IF(piosts[]==DR_RAM_STATUS) THEN 
+        bncnt_drram[].d = piobn[].q; 
+        adr_drram[].d = piocom[13..0].q;
+      ELSE 	
+        bncnt_drram[].d = 0;
+        adr_drram[].d = 0;
+      END IF;
+    ELSE 
+      IF((dmaack_drram==0)&(bncnt_drram[]!=0))THEN 
+        bncnt_drram[].d = bncnt_drram[].q - 1 ;
+        adr_drram[].d = adr_drram[].q + 1 ;
+      ELSE 
+        bncnt_drram[].d = bncnt_drram[].q;
+        adr_drram[].d = adr_drram[].q;
+      END IF;
+    END IF;
+
+    IF (pio==1) THEN 
+      IF(piosts[]==DR_RAM_STATUS) THEN
+         dmar_drram.d = GND;
+      ELSE
+         dmar_drram.d = VCC;          
+      END IF;
+    ELSE
+      IF((bncnt_drram[]==1)&(dmaack_drram==0)) THEN
+        dmar_drram.d = VCC;
+      ELSE 
+        dmar_drram.d = dmar_drram.q;        
+      END IF;
+    END IF;
+
+    IF(pio==1) THEN
+      IF(piosts[]==DR_RAM_STATUS) THEN      
+        CASE piocom[18..17] IS
+          WHEN B"00" => iram[].d = B"1110";
+          WHEN B"01" => iram[].d = B"1101";
+          WHEN B"10" => iram[].d = B"1011";
+          WHEN B"11" => iram[].d = B"0111";
+        END CASE;  
+      ELSE 
+        iram[].d = B"1111";
+      END IF;
+    ELSE
+      iram[].d = iram[].q;
+    END IF;  
+
+    dmar_drram0.d = dmar_drram.q;
+    IF((dmar_drram0==0)&(dmaack_drram==0)) THEN 
+      pg_weram[].d = iram[].q;
+    ELSE 
+      pg_weram[].d = B"1111";
+    END IF;
+
+%=======================================================
+	DR_REG
+=======================================================%
+
+    dmaack_drreg.d = hl_dma_ack;
+  
+    IF (pio==1) THEN 
+      IF(piosts[]==DR_REG_STATUS) THEN 
+        bncnt_drreg[].d = piobn[].q; 
+        adr_drreg[].d = piocom[9..0].q;
+      ELSE 	
+        bncnt_drreg[].d = 0;
+        adr_drreg[].d = 0;
+      END IF;
+    ELSE 
+      IF ((dmaack_drreg==0)&(bncnt_drreg[]!=0)) THEN 
+        bncnt_drreg[].d = bncnt_drreg[].q - 1 ;
+        adr_drreg[].d = adr_drreg[].q + 1 ;
+      ELSE 
+        bncnt_drreg[].d = bncnt_drreg[].q;
+        adr_drreg[].d = adr_drreg[].q;
+      END IF;
+    END IF;
+
+    IF (pio==1) THEN 
+      IF (piosts[]==DR_REG_STATUS) THEN
+         dmar_drreg.d = GND;
+      ELSE
+         dmar_drreg.d = VCC;          
+      END IF;
+    ELSE
+      IF ((bncnt_drreg[]==1)&(dmaack_drreg==0)) THEN
+        dmar_drreg.d = VCC;
+      ELSE 
+        dmar_drreg.d = dmar_drreg.q;        
+      END IF;
+    END IF;
+
+    pg_wepf = dmaack_drreg # dmar_drreg ;
+
+%=======================================================
+	DR_NSTART
+=======================================================%
+    dmaack_drns.d = hl_dma_ack;
+
+    IF (pio==1) THEN 
+      IF (piosts[]==DR_NS_STATUS) THEN
+         dmar_drns.d = GND;
+      ELSE
+         dmar_drns.d = VCC;          
+      END IF;
+    ELSE
+      IF(dmaack_drns==0) THEN
+        dmar_drns.d = VCC;
+      ELSE 
+        dmar_drns.d = dmar_drns.q;        
+      END IF;
+    END IF;
+
+    IF(pio==1) THEN
+      nors.d = piocom[17];
+    ELSE
+      nors.d = nors.q;
+    END IF;  
+
+    nread = (dmaack_drns==0)&(dmar_drns==0)&(nors==0);
+    cstart = (dmaack_drns==0)&(dmar_drns==0)&(nors==1);
+
+    IF(cstart==1) THEN 
+      ce.d = VCC;
+    ELSIF(ncnt[]==1) THEN 
+      ce.d = GND;
+    ELSE 
+      ce.d = ce.q ;
+    END IF;
+
+    IF(nread == 1) THEN 
+      ncnt[].d = hl_data[13..0];
+    ELSE
+      IF((ce==1)&(ncnt[]!=0))THEN 
+        ncnt[].d = ncnt[].q -1 ;
+      ELSE 
+        ncnt[].d = ncnt[].q;        
+      END IF;
+    END IF;
+
+    run.d = ce.q;
+    pg_runpf = run.q;
+    hl_calc_sts = ce.q;
+
+%=======================================================
+	DW_REG
+=======================================================%
+	img_dma_ack[0].d = hl_dma_w.q;
+	img_dma_ack[5..1].d = img_dma_ack[4..0].q;
+    IF (pio==1) THEN 
+      IF(piosts[]==DW_REG_STATUS) THEN 
+        bncnt_dwreg[].d = piobn[].q; 
+        adr_dwreg[].d = piocom[9..0].q;
+      ELSE 	
+        bncnt_dwreg[].d = 0;
+        adr_dwreg[].d = 0;
+      END IF;
+    ELSE 
+      IF((img_dma_ack[5]==0)&(bncnt_dwreg[]!=0)) THEN 
+        bncnt_dwreg[].d = bncnt_dwreg[].q - 1 ;
+        adr_dwreg[].d = adr_dwreg[].q + 1 ;
+      ELSE 
+        bncnt_dwreg[].d = bncnt_dwreg[].q;
+        adr_dwreg[].d = adr_dwreg[].q;
+      END IF;
+    END IF;
+
+    IF((img_dma_ack[5]==0)&(bncnt_dwreg[]!=0)) THEN 
+      pg_oepf = GND;
+    ELSE 
+      pg_oepf = VCC;
+    END IF;
+
+    d_write[0].d = pg_oepf; 
+    d_write[2..1].d = d_write[1..0].q;
+    hl_d_write.d = d_write[2].q;
+
+    IF (pio==1) THEN 
+      IF(piosts[]==DW_REG_STATUS) THEN
+         hl_dma_w.d = GND;
+      ELSE
+         hl_dma_w.d = VCC;          
+      END IF;
+    ELSE
+      IF((d_write[2]==1)&(hl_d_write==0)) THEN
+        hl_dma_w.d = VCC;
+      ELSE 
+        hl_dma_w.d = hl_dma_w.q;        
+      END IF;
+    END IF;
+
+	IF (pio == 1) THEN
+	  IF (piosts[] == DW_REG_STATUS) THEN
+		pg_gg.d = B"1";
+	  ELSE
+		pg_gg.d = B"0";
+	  END IF;
+	ELSE
+      IF((d_write[2]==1)&(hl_d_write==0)) THEN
+        pg_gg.d = B"0";
+      ELSE 
+        pg_gg.d = pg_gg.q;        
+      END IF;
+    END IF;
+    pg_g.d = pg_gg.q;
+
+%=======================================================
+	CONF_START & CONF_END
+=======================================================%
+	pg_conf_ncfig = conf_ncfig.q;
+
+    IF (pio==1) THEN 
+      IF(piosts[]==CONF_START) THEN 
+	    conf_bsy.d = VCC;
+      ELSE
+        IF(piosts[]==CONF_END) THEN
+	      conf_bsy.d = GND;
+        ELSE
+		  conf_bsy.d = conf_bsy.q;
+        END IF;
+      END IF;
+    ELSE
+	  conf_bsy.d = conf_bsy.q;
+    END IF;
+
+    IF(pio==1) THEN
+      IF(piosts[]==CONF_START) THEN      
+        CASE piocom[17] IS
+          WHEN B"0" => conf_ncfig.d = GND;    % nCONFIG (RESET)%
+          WHEN B"1" => conf_ncfig.d = VCC;    % nCONFIG %
+        END CASE;  
+      ELSE 
+       conf_ncfig.d = VCC;    % nCONFIG %
+      END IF;
+    ELSE
+		CASE conf_bsy.q IS
+			WHEN B"1" => conf_ncfig.d = conf_ncfig.q; % nCONFIG %
+			WHEN B"0" => conf_ncfig.d = VCC; % nCONFIG %
+		END CASE;
+    END IF;  
+
+%=======================================================
+	CONF_BUSY
+=======================================================%
+	pg_conf_ws = conf_ws.q;
+    pg_conf_data[] = conf_data[].q;
+
+    IF (pio==1) THEN 
+      IF(piosts[]==CONF_BUSY) THEN 
+        cnt_conf[].d = B"1100";    % B"1100" = 12 %
+        conf_ws.d = conf_ws.q;	
+        conf_data[].d = piocom[7..0].q;
+      ELSE 	
+        cnt_conf[].d = 0;
+        conf_ws.d = conf_ws.q;
+        conf_data[].d = conf_data[].q;     %  conf_data[].d = 0 <- ??? %
+      END IF;
+    ELSE 
+      IF (cnt_conf[]!=0) THEN 
+        IF (cnt_conf[]==B"1011") THEN 
+           cnt_conf[].d = cnt_conf[].q - 1 ;
+    	   conf_ws.d = GND;
+           conf_data[].d = conf_data[].q;
+        ELSE
+		   cnt_conf[].d = cnt_conf[].q - 1 ;
+           conf_ws.d = conf_ws.q;
+           conf_data[].d = conf_data[].q;
+        END IF;
+      ELSE
+        cnt_conf[].d = cnt_conf[].q;
+        conf_data[].d = conf_data[].q;
+        conf_ws.d = VCC;
+      END IF;
+    END IF;
+
+%=======================================================
+	OUTPUT 
+=======================================================%
+    CASE piosts[] IS
+      WHEN DR_RAM_STATUS =>
+        pg_adrram[] = adr_drram[];
+        pg_cspf[] = 0;
+        pg_adrpf[] = 0;
+        hl_dma_r = dmar_drram;
+      WHEN DR_REG_STATUS =>
+        pg_adrram[] = 0;
+        pg_cspf[] = cs[];
+        pg_adrpf[] = adr_drreg[];
+        hl_dma_r = dmar_drreg;
+      WHEN DR_NS_STATUS =>
+        pg_adrram[] = ncnt[];
+        pg_cspf[] = 0;
+        pg_adrpf[] = 0;
+        hl_dma_r = dmar_drns;
+      WHEN DW_REG_STATUS =>
+        pg_adrram[] = 0;
+        pg_cspf[] = cs[];
+        pg_adrpf[] =  adr_dwreg[];
+        hl_dma_r = VCC;
+      WHEN CONF_START =>
+        pg_adrram[] = 0;
+        pg_cspf[] = 0;
+        pg_adrpf[] =  0;
+        hl_dma_r = VCC;
+      WHEN CONF_BUSY =>
+        pg_adrram[] = 0;
+        pg_cspf[] = 0;
+        pg_adrpf[] = 0;
+        hl_dma_r = VCC;
+      WHEN CONF_END =>
+        pg_adrram[] = 0;
+        pg_cspf[] = 0;
+        pg_adrpf[] = 0;
+        hl_dma_r = VCC;
+    END CASE;
+
+    CASE conf_bsy IS
+      WHEN B"0" =>
+	pg_conf_cs     = GND;    % CS      %
+    pg_conf_ncs    = VCC;    % nCS     % 
+	  WHEN B"1" =>
+    pg_conf_cs     = VCC;    % CS      %
+    pg_conf_ncs    = GND;    % nCS     % 
+	END CASE;
+
+	
+
+
+END;

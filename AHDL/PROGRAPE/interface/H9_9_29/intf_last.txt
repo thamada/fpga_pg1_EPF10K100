@@ -1,0 +1,765 @@
+Project Information                                e:\usr\hamada\intf\intf.rpt
+
+MAX+plus II Compiler Report File
+Version 8.0 6/12/97
+Compiled: 09/30/97 01:42:37
+
+Copyright (C) 1991-1997 Altera Corporation
+Any megafunction design, and related net list (encrypted or decrypted),
+support information, device programming or simulation file, and any other
+associated documentation or information provided by Altera or a partner
+under Altera's Megafunction Partnership Program may be used only to
+program PLD devices (but not masked PLD devices) from Altera.  Any other
+use of such megafunction design, net list, support information, device
+programming or simulation file, or any other related documentation or
+information is prohibited for any other purpose, including, but not
+limited to modification, reverse engineering, de-compiling, or use with
+any other silicon devices, unless such use is explicitly licensed under
+a separate agreement with Altera or a megafunction partner.  Title to
+the intellectual property, including patents, copyrights, trademarks,
+trade secrets, or maskworks, embodied in any such megafunction design,
+net list, support information, device programming or simulation file, or
+any other related documentation or information provided by Altera or a
+megafunction partner, remains with Altera, the megafunction partner, or
+their respective licensors.  No other licenses, including any licenses
+needed under any third party's intellectual property, are provided herein.
+
+
+
+***** Project compilation was successful
+
+
+PROGRAPE Controller
+
+
+** DEVICE SUMMARY **
+
+Chip/                     Input Output Bidir  Memory  Memory  			 LCs
+POF       Device          Pins  Pins   Pins   Bits % Utilized  LCs  % Utilized
+
+intf      EPF10K20RC208-4  32     39     0    0         0  %    414      35 %
+
+User Pins:                 32     39     0  
+
+
+§
+Project Information                                e:\usr\hamada\intf\intf.rpt
+
+** PROJECT COMPILATION MESSAGES **
+
+Warning: Ignored unnecessary INPUT pin 'hl_data27'
+Warning: Ignored unnecessary INPUT pin 'hl_data26'
+Warning: Ignored unnecessary INPUT pin 'hl_data25'
+
+§
+Project Information                                e:\usr\hamada\intf\intf.rpt
+
+** PIN/LOCATION/CHIP ASSIGNMENTS **
+
+                  Actual                  
+    User       Assignments                
+Assignments   (if different)     Node Name
+
+intf@LC2_E14                      adr_drram0
+intf@LC7_E23                      adr_drram1
+intf@LC1_E23                      adr_drram2
+intf@LC6_E18                      adr_drram3
+intf@LC8_D2                       adr_drram4
+intf@LC6_D2                       adr_drram5
+intf@LC5_D2                       adr_drram6
+intf@LC2_F9                       adr_drram7
+intf@LC1_F9                       adr_drram8
+intf@LC3_F10                      adr_drram9
+intf@LC2_F16                      adr_drram10
+intf@LC5_F17                      adr_drram11
+intf@LC4_F17                      adr_drram12
+intf@LC4_F16                      adr_drram13
+intf@LC4_E14                      adr_drreg0
+intf@LC8_D24                      adr_drreg1
+intf@LC6_D5                       adr_drreg2
+intf@LC8_D5                       adr_drreg3
+intf@LC1_E6                       adr_drreg4
+intf@LC6_E1                       adr_drreg5
+intf@LC5_E1                       adr_drreg6
+intf@LC2_E6                       adr_drreg7
+intf@LC5_E7                       adr_drreg8
+intf@LC3_E7                       adr_drreg9
+intf@LC1_E14                      adr_dwreg0
+intf@LC2_C9                       adr_dwreg1
+intf@LC7_C12                      adr_dwreg2
+intf@LC8_C12                      adr_dwreg3
+intf@LC3_C9                       adr_dwreg4
+intf@LC3_E8                       adr_dwreg5
+intf@LC6_C4                       adr_dwreg6
+intf@LC4_E3                       adr_dwreg7
+intf@LC8_E3                       adr_dwreg8
+intf@LC1_E8                       adr_dwreg9
+intf@LC4_E15                      bncnt_drram0
+intf@LC1_D20                      bncnt_drram1
+intf@LC5_D12                      bncnt_drram2
+intf@LC7_D12                      bncnt_drram3
+intf@LC8_D11                      bncnt_drram4
+intf@LC7_D11                      bncnt_drram5
+intf@LC6_D11                      bncnt_drram6
+intf@LC2_D20                      bncnt_drram7
+intf@LC6_D20                      bncnt_drram8
+intf@LC4_D22                      bncnt_drram9
+intf@LC5_D22                      bncnt_drram10
+intf@LC2_E15                      bncnt_drreg0
+intf@LC2_B17                      bncnt_drreg1
+intf@LC3_B10                      bncnt_drreg2
+intf@LC5_B4                       bncnt_drreg3
+intf@LC4_B4                       bncnt_drreg4
+intf@LC5_B8                       bncnt_drreg5
+intf@LC6_B8                       bncnt_drreg6
+intf@LC7_B17                      bncnt_drreg7
+intf@LC3_B17                      bncnt_drreg8
+intf@LC5_B16                      bncnt_drreg9
+intf@LC3_B16                      bncnt_drreg10
+intf@LC6_E15                      bncnt_dwreg0
+intf@LC6_C15                      bncnt_dwreg1
+intf@LC5_C24                      bncnt_dwreg2
+intf@LC6_C24                      bncnt_dwreg3
+intf@LC3_C15                      bncnt_dwreg4
+intf@LC8_C23                      bncnt_dwreg5
+intf@LC5_C23                      bncnt_dwreg6
+intf@LC2_C19                      bncnt_dwreg7
+intf@LC1_C19                      bncnt_dwreg8
+intf@LC5_C15                      bncnt_dwreg9
+intf@LC5_C19                      bncnt_dwreg10
+intf@LC4_A15                      ce
+intf@LC6_A15                      cstart
+intf@LC5_F12                      cs0
+intf@LC6_F12                      cs1
+intf@LC2_B21                      dmaack_drns
+intf@LC8_B21                      dmaack_drram
+intf@LC1_E16                      dmaack_drreg
+intf@LC3_B22                      dmar_drns
+intf@LC6_B22                      dmar_drram
+intf@LC4_B22                      dmar_drram0
+intf@LC8_B11                      dmar_drreg
+intf@LC6_F24                      d_write0
+intf@LC7_F24                      d_write1
+intf@LC8_F24                      d_write2
+intf@149                          hl_calc_sts
+intf@79                           hl_clk
+intf@186                          hl_data0
+intf@180                          hl_data1
+intf@161                          hl_data2
+intf@75                           hl_data3
+intf@189                          hl_data4
+intf@158                          hl_data5
+intf@74                           hl_data6
+intf@207                          hl_data7
+intf@8                            hl_data8
+intf@208                          hl_data9
+intf@183                          hl_data10
+intf@182                          hl_data11
+intf@184                          hl_data12
+intf@80                           hl_data13
+intf@17                           hl_data14
+intf@16                           hl_data15
+intf@40                           hl_data16
+intf@18                           hl_data17
+intf@115                          hl_data18
+intf@116                          hl_data19
+intf@36                           hl_data20
+intf@45                           hl_data21
+intf@46                           hl_data22
+intf@47                           hl_data23
+intf@53                           hl_data24
+intf@11                           hl_data28
+intf@159                          hl_data29
+intf@114                          hl_data30
+intf@113                          hl_data31
+intf@78                           hl_dma_ack
+intf@13                           hl_dma_r
+intf@55                           hl_dma_w
+intf@56                           hl_d_read
+intf@205                          hl_d_write
+intf@44                           hl_io_req
+intf@LC2_F13                      io_req0
+intf@LC4_F13                      io_req1
+intf@LC1_F3                       io_req2
+intf@LC3_F3                       io_req3
+intf@LC2_F3                       io_req4
+intf@LC3_F11                      io_req5
+intf@LC4_B20                      iram0
+intf@LC1_B19                      iram1
+intf@LC2_B19                      iram2
+intf@LC1_B20                      iram3
+intf@LC2_A22                      ncnt0
+intf@LC3_A1                       ncnt1
+intf@LC4_A1                       ncnt2
+intf@LC6_A1                       ncnt3
+intf@LC8_A1                       ncnt4
+intf@LC1_A3                       ncnt5
+intf@LC3_A3                       ncnt6
+intf@LC5_A3                       ncnt7
+intf@LC5_A18                      ncnt8
+intf@LC3_A18                      ncnt9
+intf@LC6_A19                      ncnt10
+intf@LC1_A17                      ncnt11
+intf@LC8_A19                      ncnt12
+intf@LC1_A15                      ncnt13
+intf@LC2_B24                      nors
+intf@LC4_A13                      nread
+intf@38                           pg_adrpf0
+intf@136                          pg_adrpf1
+intf@131                          pg_adrpf2
+intf@133                          pg_adrpf3
+intf@134                          pg_adrpf4
+intf@122                          pg_adrpf5
+intf@120                          pg_adrpf6
+intf@119                          pg_adrpf7
+intf@121                          pg_adrpf8
+intf@41                           pg_adrpf9
+intf@9                            pg_adrram0
+intf@7                            pg_adrram1
+intf@39                           pg_adrram2
+intf@148                          pg_adrram3
+intf@10                           pg_adrram4
+intf@157                          pg_adrram5
+intf@147                          pg_adrram6
+intf@112                          pg_adrram7
+intf@150                          pg_adrram8
+intf@111                          pg_adrram9
+intf@57                           pg_adrram10
+intf@65                           pg_adrram11
+intf@73                           pg_adrram12
+intf@69                           pg_adrram13
+intf@179                          pg_cspf0
+intf@86                           pg_cspf1
+intf@70                           pg_g
+intf@LC1_F24                      pg_gg
+intf@67                           pg_oepf
+intf@204                          pg_runpf
+intf@140                          pg_wepf
+intf@14                           pg_weram0
+intf@15                           pg_weram1
+intf@12                           pg_weram2
+intf@139                          pg_weram3
+intf@LC3_F8                       pio
+intf@LC5_E15                      piobn0
+intf@LC1_B17                      piobn1
+intf@LC4_B10                      piobn2
+intf@LC2_D18                      piobn3
+intf@LC3_B14                      piobn4
+intf@LC4_D13                      piobn5
+intf@LC2_D13                      piobn6
+intf@LC2_A23                      piobn7
+intf@LC1_A20                      piobn8
+intf@LC3_A20                      piobn9
+intf@LC3_D22                      piobn10
+intf@LC7_E14                      piocom0
+intf@LC6_E23                      piocom1
+intf@LC3_E13                      piocom2
+intf@LC2_C14                      piocom3
+intf@LC1_C9                       piocom4
+intf@LC8_E8                       piocom5
+intf@LC2_C11                      piocom6
+intf@LC4_F9                       piocom7
+intf@LC3_F9                       piocom8
+intf@LC5_E4                       piocom9
+intf@LC3_F16                      piocom10
+intf@LC6_F17                      piocom11
+intf@LC3_F17                      piocom12
+intf@LC1_F16                      piocom13
+intf@LC1_B18                      piocom17
+intf@LC1_B13                      piocom18
+intf@LC1_F6                       piosts0
+intf@LC2_F6                       piosts1
+intf@LC3_A23                      run
+intf@LC7_B20                      :101
+intf@LC4_B19                      :102
+intf@LC8_B19                      :103
+intf@LC6_B20                      :104
+intf@LC1_A23                      :105
+intf@LC4_C17                      :106
+intf@LC2_F24                      :107
+intf@LC3_F24                      :108
+intf@LC1_F15                      :109
+intf@LC1_F23                      :292
+intf@LC5_F6                       :301
+intf@LC4_F6                       ~309~1
+intf@LC3_F6                       ~312~1
+intf@LC4_F12                      ~322~1
+intf@LC3_F12                      ~323~1
+intf@LC1_F13                      :332
+intf@LC3_E15                      :333
+intf@LC8_D12                      :335
+intf@LC6_D12                      :336
+intf@LC6_D13                      :338
+intf@LC7_D13                      :339
+intf@LC6_E14                      :344
+intf@LC2_E23                      :346
+intf@LC2_C21                      :347
+intf@LC2_E8                       :349
+intf@LC1_C11                      :350
+intf@LC1_D10                      ~368~1
+intf@LC2_D10                      ~368~2
+intf@LC3_D10                      ~368~3
+intf@LC1_E22                      :372
+intf@LC1_D12                      :383
+intf@LC3_D12                      :388
+intf@LC3_D8                       :390
+intf@LC1_D11                      :399
+intf@LC3_D11                      :404
+intf@LC1_D9                       :406
+intf@LC3_D20                      :412
+intf@LC1_D22                      :420
+intf@LC6_D22                      :422
+intf@LC2_D12                      :433
+intf@LC4_D12                      :435
+intf@LC2_D11                      :439
+intf@LC4_D11                      :441
+intf@LC2_D22                      :447
+intf@LC1_E18                      :459
+intf@LC3_E18                      :463
+intf@LC5_E18                      :465
+intf@LC1_D2                       :471
+intf@LC3_D2                       :475
+intf@LC1_D1                       :477
+intf@LC6_F9                       :481
+intf@LC1_F10                      :487
+intf@LC2_F4                       :489
+intf@LC5_F9                       :493
+intf@LC1_F17                      :499
+intf@LC5_F16                      :501
+intf@LC2_E18                      :510
+intf@LC4_E18                      :512
+intf@LC2_D2                       :516
+intf@LC4_D2                       :518
+intf@LC2_F10                      :524
+intf@LC2_F17                      :530
+intf@LC4_E17                      :536
+intf@LC7_D20                      ~540~1
+intf@LC5_D11                      ~546~1
+intf@LC5_D20                      ~552~1
+intf@LC4_D20                      ~554~1
+intf@LC8_D22                      :555
+intf@LC7_D22                      ~558~1
+intf@LC3_E23                      ~562~1
+intf@LC7_D2                       ~568~1
+intf@LC8_F9                       ~574~1
+intf@LC7_F9                       ~576~1
+intf@LC4_F10                      :577
+intf@LC7_F16                      ~580~1
+intf@LC8_F17                      ~582~1
+intf@LC7_F17                      :583
+intf@LC6_F16                      ~586~1
+intf@LC8_B22                      :587
+intf@LC4_D10                      ~604~1
+intf@LC5_D10                      ~604~2
+intf@LC6_D10                      :604
+intf@LC1_B15                      :615
+intf@LC3_B20                      ~647~1
+intf@LC3_B19                      ~650~1
+intf@LC5_B19                      ~653~1
+intf@LC2_B20                      ~656~1
+intf@LC1_E19                      :675
+intf@LC7_E15                      :676
+intf@LC5_B10                      :678
+intf@LC3_B4                       :679
+intf@LC3_D13                      :681
+intf@LC1_D13                      :682
+intf@LC8_E14                      :687
+intf@LC1_E5                       :689
+intf@LC2_C3                       :690
+intf@LC4_E8                       :692
+intf@LC3_C11                      :693
+intf@LC1_B11                      ~707~1
+intf@LC2_B11                      ~707~2
+intf@LC3_B11                      ~707~3
+intf@LC5_B1                       :711
+intf@LC1_B10                      :722
+intf@LC1_B4                       :727
+intf@LC1_B9                       :729
+intf@LC3_B8                       :738
+intf@LC1_B8                       :743
+intf@LC2_B7                       :745
+intf@LC5_B17                      :751
+intf@LC1_B16                      :759
+intf@LC4_B16                      :761
+intf@LC2_B10                      :772
+intf@LC2_B4                       :774
+intf@LC4_B8                       :778
+intf@LC2_B8                       :780
+intf@LC2_B16                      :786
+intf@LC3_D5                       :798
+intf@LC1_D5                       :802
+intf@LC7_D5                       :804
+intf@LC1_E1                       :810
+intf@LC3_E1                       :814
+intf@LC8_E1                       :816
+intf@LC4_E7                       :820
+intf@LC1_E7                       :826
+intf@LC4_D5                       :833
+intf@LC2_D5                       :835
+intf@LC2_E1                       :839
+intf@LC4_E1                       :841
+intf@LC2_E7                       :847
+intf@LC6_D24                      :851
+intf@LC4_B17                      ~855~1
+intf@LC6_B4                       ~861~1
+intf@LC6_B17                      ~867~1
+intf@LC8_B17                      ~869~1
+intf@LC7_B16                      :870
+intf@LC6_B16                      ~873~1
+intf@LC1_D24                      ~877~1
+intf@LC4_E6                       ~883~1
+intf@LC3_E6                       ~889~1
+intf@LC7_E7                       ~891~1
+intf@LC6_E7                       :892
+intf@LC7_B11                      :895
+intf@LC4_B11                      ~912~1
+intf@LC5_B11                      ~912~2
+intf@LC6_B11                      :912
+intf@LC6_B3                       :921
+intf@LC7_B22                      :923
+intf@LC4_A4                       ~961~1
+intf@LC5_A4                       ~961~2
+intf@LC6_A4                       ~961~3
+intf@LC3_A15                      ~961~4
+intf@LC1_A21                      :970
+intf@LC2_A14                      :972
+intf@LC4_A22                      :973
+intf@LC1_A14                      :975
+intf@LC3_A21                      :976
+intf@LC4_A17                      ~995~1
+intf@LC1_A4                       ~995~2
+intf@LC2_A4                       ~995~3
+intf@LC3_A4                       ~995~4
+intf@LC3_A17                      :996
+intf@LC1_A24                      :998
+intf@LC5_A1                       ~1011~2
+intf@LC7_A1                       ~1016~2
+intf@LC2_A3                       ~1027~2
+intf@LC4_A3                       ~1032~2
+intf@LC6_A3                       ~1038~1
+intf@LC1_A18                      :1046
+intf@LC5_A19                      :1048
+intf@LC3_A13                      :1054
+intf@LC1_A19                      :1062
+intf@LC5_A15                      :1064
+intf@LC2_A18                      :1089
+intf@LC2_A19                      :1095
+intf@LC2_A6                       ~1105~1
+intf@LC1_A6                       ~1107~1
+intf@LC2_A1                       ~1109~1
+intf@LC1_A1                       ~1111~1
+intf@LC4_A6                       ~1113~1
+intf@LC8_A3                       ~1115~1
+intf@LC7_A3                       ~1117~1
+intf@LC4_A18                      ~1119~1
+intf@LC6_A18                      :1120
+intf@LC3_A19                      ~1123~1
+intf@LC2_A17                      ~1125~1
+intf@LC4_A19                      :1126
+intf@LC2_A15                      ~1129~1
+intf@LC6_C21                      :1134
+intf@LC1_E15                      :1135
+intf@LC1_C8                       :1137
+intf@LC1_C21                      :1138
+intf@LC5_D13                      :1140
+intf@LC8_D13                      :1141
+intf@LC5_E14                      :1146
+intf@LC1_E11                      :1148
+intf@LC1_C2                       :1149
+intf@LC7_E8                       :1151
+intf@LC4_C11                      :1152
+intf@LC1_C17                      ~1166~1
+intf@LC2_C17                      ~1166~2
+intf@LC3_C17                      ~1166~3
+intf@LC8_C5                       :1170
+intf@LC3_C24                      :1181
+intf@LC1_C24                      :1186
+intf@LC7_C13                      :1188
+intf@LC3_C23                      :1197
+intf@LC1_C23                      :1202
+intf@LC1_C16                      :1204
+intf@LC4_C19                      :1210
+intf@LC1_C15                      :1218
+intf@LC3_C19                      :1220
+intf@LC4_C24                      :1231
+intf@LC2_C24                      :1233
+intf@LC4_C23                      :1237
+intf@LC2_C23                      :1239
+intf@LC2_C15                      :1245
+intf@LC3_C12                      :1257
+intf@LC1_C12                      :1261
+intf@LC5_C12                      :1263
+intf@LC1_C4                       :1269
+intf@LC3_C4                       :1273
+intf@LC5_C4                       :1275
+intf@LC7_E3                       :1279
+intf@LC1_E3                       :1285
+intf@LC4_C12                      :1292
+intf@LC2_C12                      :1294
+intf@LC2_C4                       :1298
+intf@LC4_C4                       :1300
+intf@LC2_E3                       :1306
+intf@LC1_C20                      :1310
+intf@LC4_C15                      ~1314~1
+intf@LC7_C15                      ~1320~1
+intf@LC6_C19                      ~1326~1
+intf@LC7_C19                      ~1328~1
+intf@LC8_C15                      :1329
+intf@LC8_C19                      ~1332~1
+intf@LC4_C9                       ~1336~1
+intf@LC5_C9                       ~1342~1
+intf@LC5_E3                       ~1348~1
+intf@LC3_E3                       ~1350~1
+intf@LC6_E8                       :1351
+intf@LC7_C17                      ~1362~1
+intf@LC6_C17                      ~1362~2
+intf@LC5_C17                      ~1362~3
+intf@LC4_F24                      ~1381~1
+intf@LC5_F24                      ~1395~1
+intf@LC1_B22                      :1455
+intf@LC5_A16                      :1461
+intf@LC2_A16                      :1464
+intf@LC5_E21                      :1467
+intf@LC6_A7                       :1470
+intf@LC7_A7                       :1473
+intf@LC4_A2                       :1476
+intf@LC7_A12                      :1479
+intf@LC5_F2                       :1482
+intf@LC2_A7                       :1485
+intf@LC7_F7                       :1488
+intf@LC1_F22                      :1491
+intf@LC1_F18                      :1494
+intf@LC2_F14                      :1497
+intf@LC1_A16                      :1500
+intf@LC1_F12                      :1509
+intf@LC2_F12                      :1512
+intf@LC3_E14                      :1515
+intf@LC1_C1                       :1518
+intf@LC6_C12                      :1521
+intf@LC5_C10                      :1524
+intf@LC3_C6                       :1527
+intf@LC5_E8                       :1530
+intf@LC7_E1                       :1533
+intf@LC8_E9                       :1536
+intf@LC6_E3                       :1539
+intf@LC8_E7                       :1542
+intf@LC2_B22                      :1544
+
+§
+Device-Specific Information:                       e:\usr\hamada\intf\intf.rpt
+intf
+
+***** Logic for device 'intf' compiled without errors.
+
+
+
+
+Device: EPF10K20RC208-4
+
+FLEX 10K Configuration Scheme: Passive Serial
+
+Device Options:
+    User-Supplied Start-Up Clock               = OFF
+    Auto-Restart Configuration on Frame Error  = OFF
+    Release Clears Before Tri-States           = OFF
+    Enable Chip_Wide Reset                     = OFF
+    Enable Chip-Wide Output Enable             = OFF
+    Enable INIT_DONE Output                    = OFF
+    JTAG User Code                             = 7f
+                                                                                                                          
+                       h                                                                                               p  
+                       l                                         h h h                                             h   g  
+                 h h R _ p R R   R R R R R R   R R R R h   R h   l l l   h p   R R R R R R   R R R R R   R R R h R l h _  
+                 l l E d g E E   E E E E E E   E E E E l   E l   _ _ _   l g   E E E E E E   E E E E E   E E E l E _ l a  
+                 _ _ S _ _ S S   S S S S S S   S S S S _   S _ G d d d V _ _   S S S S S S   S S S S S   S S S _ S d _ d  
+                 d d E w r E E G E E E E E E V E E E E d G E d N a a a C d c V E E E E E E G E E E E E V E E E d E a d r  
+                 a a R r u R R N R R R R R R C R R R R a N R a D t t t C a s C R R R R R R N R R R R R C R R R a R t a r  
+                 t t V i n V V D V V V V V V C V V V V t D V t I a a a I t p C V V V V V V D V V V V V C V V V t V a t a  
+                 a a E t p E E I E E E E E E I E E E E a I E a N 1 1 1 N a f I E E E E E E I E E E E E I E E E a E 2 a m  
+                 9 7 D e f D D O D D D D D D O D D D D 4 O D 0 T 2 0 1 T 1 0 O D D D D D D O D D D D D O D D D 2 D 9 5 5  
+               ----------------------------------------------------------------------------------------------------------_ 
+              / 208 206 204 202 200 198 196 194 192 190 188 186 184 182 180 178 176 174 172 170 168 166 164 162 160 158   |_ 
+             /    207 205 203 201 199 197 195 193 191 189 187 185 183 181 179 177 175 173 171 169 167 165 163 161 159 157    | 
+       #TCK |  1                                                                                                         156 | ^DATA0 
+ ^CONF_DONE |  2                                                                                                         155 | ^DCLK 
+      ^nCEO |  3                                                                                                         154 | ^nCE 
+       #TDO |  4                                                                                                         153 | #TDI 
+      VCCIO |  5                                                                                                         152 | GNDIO 
+     VCCINT |  6                                                                                                         151 | GNDINT 
+ pg_adrram1 |  7                                                                                                         150 | pg_adrram8 
+   hl_data8 |  8                                                                                                         149 | hl_calc_sts 
+ pg_adrram0 |  9                                                                                                         148 | pg_adrram3 
+ pg_adrram4 | 10                                                                                                         147 | pg_adrram6 
+  hl_data28 | 11                                                                                                         146 | VCCIO 
+  pg_weram2 | 12                                                                                                         145 | VCCINT 
+   hl_dma_r | 13                                                                                                         144 | RESERVED 
+  pg_weram0 | 14                                                                                                         143 | RESERVED 
+  pg_weram1 | 15                                                                                                         142 | RESERVED 
+  hl_data15 | 16                                                                                                         141 | RESERVED 
+  hl_data14 | 17                                                                                                         140 | pg_wepf 
+  hl_data17 | 18                                                                                                         139 | pg_weram3 
+   RESERVED | 19                                                                                                         138 | VCCIO 
+      GNDIO | 20                                                                                                         137 | VCCINT 
+     GNDINT | 21                                                                                                         136 | pg_adrpf1 
+      VCCIO | 22                                                                                                         135 | RESERVED 
+     VCCINT | 23                                                                                                         134 | pg_adrpf4 
+   RESERVED | 24                                                                                                         133 | pg_adrpf3 
+   RESERVED | 25                                                                                                         132 | RESERVED 
+   RESERVED | 26                                                                                                         131 | pg_adrpf2 
+   RESERVED | 27                                             EPF10K20RC208-4                                             130 | GNDIO 
+   RESERVED | 28                                                                                                         129 | GNDINT 
+   RESERVED | 29                                                                                                         128 | RESERVED 
+   RESERVED | 30                                                                                                         127 | RESERVED 
+   RESERVED | 31                                                                                                         126 | RESERVED 
+      GNDIO | 32                                                                                                         125 | RESERVED 
+     GNDINT | 33                                                                                                         124 | GNDIO 
+      VCCIO | 34                                                                                                         123 | GNDINT 
+     VCCINT | 35                                                                                                         122 | pg_adrpf5 
+  hl_data20 | 36                                                                                                         121 | pg_adrpf8 
+   RESERVED | 37                                                                                                         120 | pg_adrpf6 
+  pg_adrpf0 | 38                                                                                                         119 | pg_adrpf7 
+ pg_adrram2 | 39                                                                                                         118 | VCCIO 
+  hl_data16 | 40                                                                                                         117 | VCCINT 
+  pg_adrpf9 | 41                                                                                                         116 | hl_data19 
+      VCCIO | 42                                                                                                         115 | hl_data18 
+     VCCINT | 43                                                                                                         114 | hl_data30 
+  hl_io_req | 44                                                                                                         113 | hl_data31 
+  hl_data21 | 45                                                                                                         112 | pg_adrram7 
+  hl_data22 | 46                                                                                                         111 | pg_adrram9 
+  hl_data23 | 47                                                                                                         110 | VCCIO 
+      GNDIO | 48                                                                                                         109 | VCCINT 
+     GNDINT | 49                                                                                                         108 | ^MSEL0 
+       #TMS | 50                                                                                                         107 | ^MSEL1 
+     #nTRST | 51                                                                                                         106 | VCCINT 
+   ^nSTATUS | 52                                                                                                         105 | ^nCONFIG 
+            |      54  56  58  60  62  64  66  68  70  72  74  76  78  80  82  84  86  88  90  92  94  96  98 100 102 104  _| 
+             \   53  55  57  59  61  63  65  67  69  71  73  75  77  79  81  83  85  87  89  91  93  95  97  99 101 103   | 
+              \----------------------------------------------------------------------------------------------------------- 
+                 h R h h p R G R R R R R p V p R p p R G p h h V V h h h G G R V R p R R R R G R R R R R R V R R R R R R  
+                 l E l l g E N E E E E E g C g E g g E N g l l C C l l l N N E C E g E E E E N E E E E E E C E E E E E E  
+                 _ S _ _ _ S D S S S S S _ C _ S _ _ S D _ _ _ C C _ _ _ D D S C S _ S S S S D S S S S S S C S S S S S S  
+                 d E d d a E I E E E E E a I o E a g E I a d d I I d c d I I E I E c E E E E I E E E E E E I E E E E E E  
+                 a R m _ d R O R R R R R d O e R d   R O d a a N N m l a N N R O R s R R R R O R R R R R R O R R R R R R  
+                 t V a r r V   V V V V V r   p V r   V   r t t T T a k t T T V   V p V V V V   V V V V V V   V V V V V V  
+                 a E _ e r E   E E E E E r   f E r   E   r a a     _   a     E   E f E E E E   E E E E E E   E E E E E E  
+                 2 D w a a D   D D D D D a     D a   D   a 6 3     a   1     D   D 1 D D D D   D D D D D D   D D D D D D  
+                 4     d m               m       m       m         c   3                                                  
+                         1               1       1       1         k                                                      
+                         0               1       3       2                                                                
+
+
+§
+Device-Specific Information:                       e:\usr\hamada\intf\intf.rpt
+intf
+
+** INPUTS **
+
+                                                    Fan-In    Fan-Out
+ Pin     LC     EC   Row  Col  Primitive    Code     INP  FBK  OUT  FBK  Name
+  79      -     -    -    --      INPUT                0    0    0    0  hl_clk
+ 186      -     -    -    13      INPUT                0    0    0    2  hl_data0
+ 180      -     -    -    13      INPUT                0    0    0    2  hl_data1
+ 161      -     -    -    02      INPUT                0    0    0    2  hl_data2
+  75      -     -    -    13      INPUT                0    0    0    2  hl_data3
+ 189      -     -    -    14      INPUT                0    0    0    2  hl_data4
+ 158      -     -    -    01      INPUT                0    0    0    2  hl_data5
+  74      -     -    -    13      INPUT                0    0    0    2  hl_data6
+ 207      -     -    A    --      INPUT                0    0    0    2  hl_data7
+   8      -     -    A    --      INPUT                0    0    0    2  hl_data8
+ 208      -     -    A    --      INPUT                0    0    0    2  hl_data9
+ 183      -     -    -    --      INPUT                0    0    0    2  hl_data10
+ 182      -     -    -    --      INPUT                0    0    0    2  hl_data11
+ 184      -     -    -    --      INPUT                0    0    0    2  hl_data12
+  80      -     -    -    --      INPUT                0    0    0    2  hl_data13
+  17      -     -    C    --      INPUT                0    0    0    1  hl_data14
+  16      -     -    C    --      INPUT                0    0    0    1  hl_data15
+  40      -     -    E    --      INPUT                0    0    0    1  hl_data16
+  18      -     -    C    --      INPUT                0    0    0    1  hl_data17
+ 115      -     -    F    --      INPUT                0    0    0    1  hl_data18
+ 116      -     -    F    --      INPUT                0    0    0    1  hl_data19
+  36      -     -    E    --      INPUT                0    0    0    1  hl_data20
+  45      -     -    F    --      INPUT                0    0    0    3  hl_data21
+  46      -     -    F    --      INPUT                0    0    0    3  hl_data22
+  47      -     -    F    --      INPUT                0    0    0    3  hl_data23
+  53      -     -    F    --      INPUT                0    0    0    3  hl_data24
+  11      -     -    B    --      INPUT                0    0    0    1  hl_data28
+ 159      -     -    -    01      INPUT                0    0    0    3  hl_data29
+ 114      -     -    F    --      INPUT                0    0    0    1  hl_data30
+ 113      -     -    F    --      INPUT                0    0    0    3  hl_data31
+  78      -     -    -    --      INPUT                0    0    0   16  hl_dma_ack
+  44      -     -    F    --      INPUT                0    0    0    2  hl_io_req
+
+
+Code:
+
+s = Synthesized pin or logic cell
++ = Synchronous flipflop
+/ = Slow slew-rate output
+! = NOT gate push-back
+r = Fitter-inserted logic cell
+^ = Increased input delay
+$ = Driven by fast output logic cell
+@ = Uses single-pin Clock Enable
+& = Uses single-pin Output Enable
+
+§
+Device-Specific Information:                       e:\usr\hamada\intf\intf.rpt
+intf
+
+** OUTPUTS **
+
+       Fed By Fed By                                Fan-In    Fan-Out
+ Pin     LC     EC   Row  Col  Primitive    Code     INP  FBK  OUT  FBK  Name
+ 149      -     -    A    --     OUTPUT                0    1    0    0  hl_calc_sts
+  13      -     -    B    --     OUTPUT                0    1    0    0  hl_dma_r
+  55      -     -    -    24     OUTPUT                0    1    0    0  hl_dma_w
+  56      -     -    -    23     OUTPUT                0    1    0    0  hl_d_read
+ 205      -     -    -    24     OUTPUT                0    1    0    0  hl_d_write
+  38      -     -    E    --     OUTPUT                0    1    0    0  pg_adrpf0
+ 136      -     -    C    --     OUTPUT                0    1    0    0  pg_adrpf1
+ 131      -     -    C    --     OUTPUT                0    1    0    0  pg_adrpf2
+ 133      -     -    C    --     OUTPUT                0    1    0    0  pg_adrpf3
+ 134      -     -    C    --     OUTPUT                0    1    0    0  pg_adrpf4
+ 122      -     -    E    --     OUTPUT                0    1    0    0  pg_adrpf5
+ 120      -     -    E    --     OUTPUT                0    1    0    0  pg_adrpf6
+ 119      -     -    E    --     OUTPUT                0    1    0    0  pg_adrpf7
+ 121      -     -    E    --     OUTPUT                0    1    0    0  pg_adrpf8
+  41      -     -    E    --     OUTPUT                0    1    0    0  pg_adrpf9
+   9      -     -    A    --     OUTPUT                0    1    0    0  pg_adrram0
+   7      -     -    A    --     OUTPUT                0    1    0    0  pg_adrram1
+  39      -     -    E    --     OUTPUT                0    1    0    0  pg_adrram2
+ 148      -     -    A    --     OUTPUT                0    1    0    0  pg_adrram3
+  10      -     -    A    --     OUTPUT                0    1    0    0  pg_adrram4
+ 157      -     -    A    --     OUTPUT                0    1    0    0  pg_adrram5
+ 147      -     -    A    --     OUTPUT                0    1    0    0  pg_adrram6
+ 112      -     -    F    --     OUTPUT                0    1    0    0  pg_adrram7
+ 150      -     -    A    --     OUTPUT                0    1    0    0  pg_adrram8
+ 111      -     -    F    --     OUTPUT                0    1    0    0  pg_adrram9
+  57      -     -    -    22     OUTPUT                0    1    0    0  pg_adrram10
+  65      -     -    -    18     OUTPUT                0    1    0    0  pg_adrram11
+  73      -     -    -    14     OUTPUT                0    1    0    0  pg_adrram12
+  69      -     -    -    15     OUTPUT                0    1    0    0  pg_adrram13
+ 179      -     -    -    12     OUTPUT                0    1    0    0  pg_cspf0
+  86      -     -    -    11     OUTPUT                0    1    0    0  pg_cspf1
+  70      -     -    -    15     OUTPUT                0    1    0    0  pg_g
+  67      -     -    -    17     OUTPUT                0    1    0    0  pg_oepf
+ 204      -     -    -    23     OUTPUT                0    1    0    0  pg_runpf
+ 140      -     -    B    --     OUTPUT                0    1    0    0  pg_wepf
+  14      -     -    B    --     OUTPUT                0    1    0    0  pg_weram0
+  15      -     -    B    --     OUTPUT                0    1    0    0  pg_weram1
+  12      -     -    B    --     OUTPUT                0    1    0    0  pg_weram2
+ 139      -     -    B    --     OUTPUT                0    1    0    0  pg_weram3
+
+
+Code:
+
+s = Synthesized pin or logic cell
++ = Synchronous flipflop
+/ = Slow slew-rate output
+! = NOT gate push-back
+r = Fitter-inserted logic cell
+^ = Increased input delay
+$ = Driven by fast output logic cell
+@ = Uses single-pin Clock Enable
+& = Uses single-pin Output Enable
+
